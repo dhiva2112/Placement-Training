@@ -1,59 +1,89 @@
-class Node{
+class Node {
     int data;
     Node next;
-    Node(int data){
-        this.data=data;
+
+    Node(int data) {
+        this.data = data;
     }
 }
-class LinkedList1{
-    Node head,tail;
+class LinkedList {
+    Node head, tail;
     public void insert(int data) {
-        Node n=new Node(data);
-        n.next=null;
-        if(head==null){
-            head=n;
-            tail=n;
-        }
-        else{
-            tail.next=n;
-            tail=n;
+        Node n = new Node(data);
+        n.next = null;
+        if (head == null) {
+            head = n;
+            tail = n;
+        } else {
+            tail.next = n;
+            tail = n;
         }
     }
-    public void insertAt(int pos,int data)
-	{
-		 Node n=new Node(data);
-		 Node temp=head;
-		 for(int i=0;i< pos-1;i++)
-		{
-			 temp=temp.next;
-        }
-			 n.next=temp.next;
-			 temp.next=n;
-	}
-    public void deletebag(){
-        Node temp=head;
-        head=head.next;
-        temp.next=null;
-    }
-    public void display(){
-        Node temp=head;
-        while(temp!=null) ///traverse line condition
-        {
+    public void display() {
+        Node temp = head;
+        while (temp != null) {
             System.out.println(temp.data);
+            temp = temp.next;
+        }
+    }
+    public void inserBeg(int data){
+        Node n=new Node(data);
+        n.next=head;
+        head=n;
+    }
+    public void insertAt(int pos,int data){
+        Node n=new Node(data);
+        Node temp=head;
+        for(int i=0;i<pos-1;i++){
             temp=temp.next;
         }
+            n.next = temp.next;  // Point new node to the next node
+            temp.next = n;       // Link previous node to new node
     }
+    public  void deleteBeg()
+    {
+      Node temp=head;
+      head=head.next;
+      temp.next=null;
+    }
+    public  void deleteEnd()
+    {
+       Node temp=head;
+       while(temp.next!=tail) {
+           temp = temp.next;
+       }
+       temp.next=null;
+       tail=temp;
+    }
+    public void deleteAt(int pos)
+    {
+        Node temp=head;
+        for(int i=0;i<pos-1;i++)
+        {
+            temp=temp.next;
+
+        }
+        temp.next=temp.next.next;
+    }
+
 }
-public class LinkedList {
+public class Linikedlist{
     public static void main(String[] args) {
-        LinkedList1 ll=new LinkedList1();
+        LinkedList ll = new LinkedList();
         ll.insert(10);
         ll.insert(20);
         ll.insert(30);
-        ll.insert(80);
-        ll.deletebag();
-        ll.insertAt(1,50);
-        ll.insertAt(4,70);
+        ll.inserBeg(5);
+        ll.insertAt(2,25);
+        ll.display();
+        ll.deleteBeg();
+        System.out.println("After deletion at beg");
+        ll.display();
+        System.out.println("After deletion at end");
+        ll.deleteEnd();
+        ll.display();
+        System.out.println("After deletion at Specified position");
+        ll.deleteAt(2);
         ll.display();
     }
 }

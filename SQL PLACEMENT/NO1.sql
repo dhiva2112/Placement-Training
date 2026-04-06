@@ -1,0 +1,8 @@
+CREATE TABLE Student(
+Rollno INT,
+Name VARCHAR(60),
+DeptId INT);
+INSERT INTO Student VALUES
+(1,'ARUN',101),(2,'JAS',102);
+SELECT *
+FROM Student;

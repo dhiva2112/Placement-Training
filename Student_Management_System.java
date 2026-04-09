@@ -1,6 +1,6 @@
 ///Student Management System using linked list
 import java.util.Scanner;
-class Student_Management {
+class Student_Management{
     static class Node{
         int id;
         String name;
